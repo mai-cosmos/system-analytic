@@ -1,0 +1,82 @@
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/mixins";
+
+$grid-breakpoints: (
+  xs: 0,
+  350: 350px,
+  370: 370px,
+  400: 400px,
+  420: 420px,
+  435: 435px,
+  sm: 450px,
+  480: 480px,
+  500: 500px,
+  530: 530px,
+  md: 740px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+  xxxl: 2000px,
+  xxl3: 3000px
+);
+
+$light: #fff;
+$primary: #6B71FF;
+$success: #00F78B;
+$secondary: #272727;
+$gray: #999;
+$dark: #181818;
+
+$body-bg: $dark;
+
+$spacer:                      .6rem;
+
+$spacers: (
+  0: 0,
+  1: $spacer * .25,
+  2: $spacer * .65,
+  3: $spacer * 1.5,
+  4: $spacer * 2.5,
+  5: $spacer * 3.5,
+  6: $spacer * 5,
+  7: $spacer * 7,
+  8: $spacer * 8.5,
+  9: $spacer * 9.5,
+  10: $spacer * 10.5,
+  "border-3-half" : 1.5px
+);
+
+$enable-negative-margins : true;
+
+$container-max-widths: (
+  xs: 98%,
+  md: 96%,
+);
+
+:root {
+  --fs-base : 1rem;
+  @include media-breakpoint-up(md) {
+    --fs-base : 1rem;
+  }
+}
+
+$font-size-base:   1rem;
+
+$h1-font-size:                calc(var(--fs-base) * 2.5) !default;
+$h2-font-size:                calc(var(--fs-base) * 2) !default;
+$h3-font-size:                calc(var(--fs-base) * 1.75) !default;
+$h4-font-size:                calc(var(--fs-base) * 1.5) !default;
+$h5-font-size:                calc(var(--fs-base) * 1.25) !default;
+$h6-font-size:                calc(var(--fs-base)) !default;
+
+
+$font-sizes: (
+  1: $h1-font-size,
+  2: $h2-font-size,
+  3: $h3-font-size,
+  4: $h4-font-size,
+  5: $h5-font-size,
+  6: $h6-font-size,
+  7: calc(var(--fs-base) * .8),
+  8: calc(var(--fs-base) * .76)
+);

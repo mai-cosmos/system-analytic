@@ -1,0 +1,81 @@
+html {
+  font-size:  5.2vw;
+  @include media-breakpoint-up(md) {
+    font-size: 1.95vw;
+  }
+}
+
+.display-1 {
+  font-size: 3.55rem;
+  @include media-breakpoint-up(md) {
+    font-size: 5rem;
+  }
+}
+
+body {
+  background: $body-bg;
+  color: $white;
+}
+
+p, span, li, .card-body {
+  margin: 0;
+  color: $white;
+  font-weight: 300;
+  font-size: .85rem;
+  line-height: 1.4;
+  @include media-breakpoint-up(md) {
+    font-size: .6rem;
+  }
+}
+
+.logo-mai {
+  width: 2.8rem;
+  @include media-breakpoint-up(md) {
+    width: 2rem;
+  }
+}
+
+.x-decor {
+  width: 1.2rem;
+  @include media-breakpoint-up(md) {
+    width: .8rem;
+  }
+}
+
+.logo-TI {
+  width: 4.1rem;
+  @include media-breakpoint-up(md) {
+    width: 2.5rem;
+  }
+}
+
+.logo-academ {
+  width: 8.5rem;
+  @include media-breakpoint-up(md) {
+    width: 8.5rem;
+  }
+}
+
+.hero-circle {
+  position: absolute;
+  left: -25%;
+  width: 155%;
+  @include media-breakpoint-up(md) {
+    left: 25%;
+    width: 55%;
+  }
+}
+
+.green-arrow {
+  width: 10rem;
+  @include media-breakpoint-up(md) {
+    width: 13rem;
+  }
+}
+
+.sparkle {
+  width: 8rem;
+  @include media-breakpoint-up(md) {
+    width: 8.65rem;
+  }
+}

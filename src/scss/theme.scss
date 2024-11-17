@@ -1,5 +1,9 @@
 // Vendor
 @import "swiper/swiper-bundle";
+
+@import "variables";
+@import "utilities";
+
 // Bootstrap
 @import "bootstrap/scss/functions";
 @import "bootstrap/scss/variables";
@@ -38,3 +42,9 @@
 @import "bootstrap/scss/placeholders";
 @import "bootstrap/scss/helpers";
 @import "bootstrap/scss/utilities/api";
+
+// Components
+@import "components";
+
+// Styles
+@import "styles";
