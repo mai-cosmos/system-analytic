@@ -31757,7 +31757,7 @@ body {
   color: #fff;
 }
 
-p, span, li, .card-body {
+a, p, span, li, .card-body {
   margin: 0;
   color: #fff;
   font-weight: 300;
@@ -31765,7 +31765,7 @@ p, span, li, .card-body {
   line-height: 1.4;
 }
 @media (min-width: 740px) {
-  p, span, li, .card-body {
+  a, p, span, li, .card-body {
     font-size: 0.6rem;
   }
 }
