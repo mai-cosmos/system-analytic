@@ -19,5 +19,11 @@ $utilities: map-merge(
         )
       )
     ),
+    // Border colors
+    'border-color': (
+      property: border-color,
+      class: border,
+      values: $border-colors
+    ),
   )
 );

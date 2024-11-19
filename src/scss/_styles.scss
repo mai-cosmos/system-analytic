@@ -79,3 +79,52 @@ a, p, span, li, .card-body {
     width: 8.65rem;
   }
 }
+
+.rounded-accordion {
+  border-radius: 2rem !important;
+  @include media-breakpoint-up(lg) {
+    border-radius: 3rem !important;
+  }
+}
+
+.text-linear-gradient {
+  background: linear-gradient(#0271FF, #00F78B);
+  //background: linear-gradient(#0262e4, #7359ff);
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.fs-accordion-btn {
+  font-size: 2.5rem;
+  @include media-breakpoint-up(md) {
+    font-size: 3.5rem;
+  }
+}
+
+.fs-accordion-title {
+  font-size: 1.25rem;
+  line-height: 1.25;
+  @include media-breakpoint-up(md) {
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+}
+
+.fs-accordion-text-body {
+  font-size: .8rem;
+  line-height: 1.25;
+  @include media-breakpoint-up(md) {
+    font-size: 1.15rem;
+    line-height: 1.2;
+  }
+}
+
+.fs-accordion-text-body-number{
+  font-size: 1.6rem;
+  line-height: 1.2;
+  @include media-breakpoint-up(md) {
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+}

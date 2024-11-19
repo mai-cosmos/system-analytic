@@ -20,12 +20,27 @@ $grid-breakpoints: (
   xxl3: 3000px
 );
 
-$light: #fff;
-$primary: #6B71FF;
-$success: #00F78B;
-$secondary: #272727;
-$gray: #999;
-$dark: #181818;
+
+$blue:    #0d6efd !default;
+$indigo:  #6610f2 !default;
+$purple:  #6f42c1 !default;
+$pink:    #d63384 !default;
+$red:     #dc3545 !default;
+$orange:  #fd7e14 !default;
+$yellow:  #ffc107 !default;
+$green:   #198754 !default;
+$teal:    #20c997 !default;
+$cyan:    #0dcaf0 !default;
+
+$light: #ffffff !default;
+$primary: #6B71FF !default;
+$success: #00F78B !default;
+$secondary: #272727 !default;
+$gray: #999 !default;
+$dark: #181818 !default;
+$info:          $cyan !default;
+$warning:       $yellow !default;
+$danger:        $red !default;
 
 $body-bg: $dark;
 
@@ -80,3 +95,26 @@ $font-sizes: (
   7: calc(var(--fs-base) * .8),
   8: calc(var(--fs-base) * .76)
 );
+
+
+$border-color:                              #777777 !default;
+
+$accordion-padding-x:                       1.5rem !default;
+$accordion-border-color:                    $border-color !default;
+$accordion-border-radius:                   3rem !default;
+
+$accordion-button-color:                    #777777 !default;
+$accordion-button-active-color:             #777777 !default;
+$accordion-button-font-weight:              400 !default;
+$accordion-button-active-bg:                $light !default;
+
+$border-colors: (
+    'primary': rgba($primary, 1),
+    'success': rgba($success, 1),
+    'secondary': rgba(#777777, 1),
+    'info':    rgba($info, 1),
+    'warning': rgba($warning, 1),
+    'danger':  rgba($danger, 1),
+    'light':   rgba($light, 1),
+    'dark':    rgba($dark, .35),
+) !default;

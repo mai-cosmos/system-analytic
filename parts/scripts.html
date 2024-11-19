@@ -1,4 +1,5 @@
 <script src="assets/js/theme.min.js"></script>
+<script src="assets/vendor/gsap/dist/gsap.min.js"></script>
 <script>
   AOS.init({
     offset: 50,
@@ -6,6 +7,83 @@
     once: true,
     delay: 100,
   });
+</script>
+<script>
+  const STATE = {
+    OPENED: "opened",
+    CLOSED: "closed"
+  };
+
+  class Accordion {
+    accordion;
+    constructor(accordion) {
+      this.accordion = accordion;
+    }
+    play() {
+      let items = this.accordion.querySelectorAll(".accordion-item");
+      let itemStates = []; // по умолчанию все STATE.CLOSED
+      items.forEach(() => { itemStates.push(STATE.CLOSED) });
+
+      for(let i = 0; i < items.length; i++){
+        items[i].addEventListener("click", function() {
+          changeState(i, null, itemStates);
+          animateButton(i, this.querySelector(".fa-circle-plus"), this.querySelector(".fa-circle-minus"), itemStates);
+          animateBackground(i, items[i], itemStates);
+          for(let k = 0; k < items.length; k++){
+            if(i !== k){
+              if(itemStates[k] === STATE.OPENED){
+                changeState(k, STATE.CLOSED, itemStates);
+                animateButton(k, items[k].querySelector(".fa-circle-plus"), items[k].querySelector(".fa-circle-minus"), itemStates);
+                animateBackground(k, items[k], itemStates);
+              }
+            }
+          }
+          timeOut(items[i]);
+        });
+      }
+    }
+  }
+
+  let accordions = [];
+  document.querySelectorAll(".accordion").forEach((item) => { accordions.push(new Accordion(item)) });
+  accordions.forEach((accordion) => { accordion.play() });
+
+  function changeState(i, state, itemStates){
+    if(!itemStates || itemStates.length === 0) return;
+    if(state){
+      itemStates[i] = state;
+    }
+    else if(itemStates[i] === STATE.CLOSED)
+      itemStates[i] = STATE.OPENED;
+    else
+      itemStates[i] = STATE.CLOSED;
+  }
+  function animateButton(i, plus, minus, itemStates){
+    if(!itemStates || itemStates.length === 0) return;
+    if(itemStates[i] === STATE.CLOSED && minus){
+      gsap.to(minus, 0.15, {scale: 0, onComplete(){minus.classList.replace("fa-circle-minus", "fa-circle-plus");}});
+      gsap.to(minus, 0.15, {scale: 1, delay: 0.15});
+    }
+    else if(plus){
+      gsap.to(plus, 0.15, {scale: 0, onComplete(){plus.classList.replace("fa-circle-plus", "fa-circle-minus");}});
+      gsap.to(plus, 0.15, {scale: 1, delay: 0.15});
+    }
+  }
+  function animateBackground(i, item, itemStates) {
+    if(!itemStates || itemStates.length === 0) return;
+    if(itemStates[i] === STATE.CLOSED) {
+      item.classList.remove("bg-secondary");
+    }
+    else {
+      item.classList.add("bg-secondary");
+    }
+
+  }
+  function timeOut(item){
+    item.disabled = true;
+    setTimeout(() => { item.disabled = false; }, 500);
+  }
+
 </script>
 </body>
 </html>
