@@ -128,3 +128,81 @@ a, p, span, li, .card-body {
     line-height: 1.2;
   }
 }
+
+.text-intro {
+  color:$dark;
+  font-weight: 700;
+  font-size: 1.85rem;
+  line-height: 1;
+  @include media-breakpoint-up(md) {
+    width: 60%;
+    font-size: 2.8rem;
+  }
+}
+
+.msg-success-left {
+  width: 80%;
+  background: $success;
+  border-radius: 1.4rem;
+  border-bottom-left-radius: 0;
+  border: none;
+  padding: 1rem;
+  margin-left: -.1rem;
+  @include media-breakpoint-up(md) {
+    width: 60%;
+    padding: 1.4rem;
+  }
+}
+
+.msg-secondary-left {
+  width: 80%;
+  background: #666666;
+  border-radius: 1.4rem;
+  border-bottom-left-radius: 0;
+  border: none;
+  padding: 1rem;
+  margin-left: -.1rem;
+  @include media-breakpoint-up(md) {
+    width: 60%;
+    padding: 1.4rem;
+  }
+}
+
+.msg-text-success {
+  color: $dark;
+  font-size: 1rem;
+  line-height: 1.1;
+  @include media-breakpoint-up(md) {
+    font-size: 1.8rem;
+  }
+}
+
+.msg-text-secondary {
+  color: $light;
+  font-size: 1rem;
+  line-height: 1.1;
+  @include media-breakpoint-up(md) {
+    font-size: 1.8rem;
+  }
+}
+
+
+.round-success-left {
+  --scale: 1.2;
+  background: radial-gradient(circle at -15% 30.5%, rgba(0,0,0,0) calc(2.45rem * var(--scale)), $success 0px);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  border: none;
+  width: calc(2rem * var(--scale));
+  height: calc(3.5rem * var(--scale));
+}
+
+.round-secondary-left {
+  --scale: 1.2;
+  background: radial-gradient(circle at -15% 30.5%, rgba(0,0,0,0) calc(2.45rem * var(--scale)), #666666 0px);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  border: none;
+  width: calc(2rem * var(--scale));
+  height: calc(3.5rem * var(--scale));
+}

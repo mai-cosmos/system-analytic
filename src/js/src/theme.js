@@ -15,3 +15,120 @@ let scroll = new SmoothScroll('a[href*="#"]', {
   pulseNormalize: 1,
   touchpadSupport: true,
 });
+
+// INTRO
+const intro = document.querySelector("#section-intro");
+const introText = document.querySelector("#intro-text");
+
+// SCROLLMAGIC
+const controller = new ScrollMagic.Controller();
+const sceneDurationAnimationRings = 2000;
+const sceneDurationPinIntro = 1200;
+const sceneDurationIntroText = 400;
+
+let sceneAnimationRings = new ScrollMagic.Scene({
+  duration: sceneDurationAnimationRings,
+  triggerElement: intro,
+  offset: -850,
+  triggerHook: 0
+})
+  .addIndicators()
+  //.setPin(intro)
+  .addTo(controller);
+
+let scenePinIntro = new ScrollMagic.Scene({
+  duration: sceneDurationPinIntro,
+  triggerElement: intro,
+  triggerHook: 0
+})
+  .addIndicators()
+  .setPin(intro)
+  .addTo(controller);
+
+let sceneIntroTextShow = new ScrollMagic.Scene({
+  duration: sceneDurationIntroText,
+  triggerElement: intro,
+  offset: -400,
+  triggerHook: 0
+})
+  .addIndicators()
+  .addTo(controller)
+  .setTween(
+    gsap.fromTo(
+      introText,
+      {opacity: `0`},
+      {opacity: `1`}
+    )
+  );
+
+let sceneIntroTextHide = new ScrollMagic.Scene({
+  duration: sceneDurationIntroText,
+  triggerElement: intro,
+  offset: 100,
+  triggerHook: 0
+})
+  .addIndicators()
+  .addTo(controller)
+  .setTween(
+    gsap.to(
+      introText,
+      {opacity: `0`}
+    )
+  );
+
+
+// CANVAS
+const windowWidth = window.innerWidth;
+const windowHeight = window.innerHeight;
+
+const canvas = document.getElementById("canvas-intro");
+canvas.width = windowWidth;
+canvas.height = windowHeight;
+
+const context = canvas.getContext("2d");
+
+let imageWidth = windowWidth;
+let imageHeight = imageWidth * 9/16; //16x9
+
+if(imageHeight < windowHeight) {
+  imageHeight = windowHeight;
+  imageWidth = imageHeight * 16/9;
+}
+
+const frameCount = 400;
+const frames = [];
+let frameIndex = 0;
+
+const currentFrame = (index) => (
+  `/assets/img/frames/${index.toString().padStart(4, '0')}.png`
+    //`https://www.apple.com/105/media/us/airpods-pro/2019/1299e2f5_9206_4470_b28e_08307a42f19b/anim/sequence/large/01-hero-lightpass/${index.toString().padStart(4, '0')}.jpg`
+)
+const preloadImages = () => {
+  for (let i = 1; i < frameCount; i++) {
+    const img = new Image();
+    img.src = currentFrame(i);
+    frames.push(img);
+  }
+};
+
+//Frames Animation
+let accelamount = 0.06;
+let scrollpos = 0;
+let delay = 0;
+
+sceneAnimationRings.on("update", e => {
+  scrollpos = (e.scrollPos - e.startPos)/ 5;
+});
+
+const update = () => {
+  delay += (scrollpos - delay) * accelamount;
+  frameIndex = Math.round(delay);
+
+  context.clearRect(0,0, canvas.width, canvas.height);
+  if(frames[frameIndex])
+    context.drawImage(frames[frameIndex], windowWidth/2 - imageWidth/2 , windowHeight/2 - imageHeight/2, imageWidth, imageHeight);
+  requestAnimationFrame(update);
+}
+
+preloadImages();
+update();
