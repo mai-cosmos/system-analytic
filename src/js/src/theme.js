@@ -22,14 +22,12 @@ const introText = document.querySelector("#intro-text");
 
 // SCROLLMAGIC
 const controller = new ScrollMagic.Controller();
-const sceneDurationAnimationRings = 2000;
-const sceneDurationPinIntro = 1200;
-const sceneDurationIntroText = 400;
+const sceneDurationPinIntro = 3500;
+const sceneDurationIntroText = 1000;
 
 let sceneAnimationRings = new ScrollMagic.Scene({
-  duration: sceneDurationAnimationRings,
   triggerElement: intro,
-  offset: -850,
+  offset: -1250,
   triggerHook: 0
 })
   .addIndicators()
@@ -64,7 +62,7 @@ let sceneIntroTextShow = new ScrollMagic.Scene({
 let sceneIntroTextHide = new ScrollMagic.Scene({
   duration: sceneDurationIntroText,
   triggerElement: intro,
-  offset: 100,
+  offset: 1200,
   triggerHook: 0
 })
   .addIndicators()
@@ -79,7 +77,7 @@ let sceneIntroTextHide = new ScrollMagic.Scene({
 
 // CANVAS
 const windowWidth = window.innerWidth;
-const windowHeight = window.innerHeight;
+const windowHeight = window.innerHeight + 80;
 
 const canvas = document.getElementById("canvas-intro");
 canvas.width = windowWidth;
@@ -95,13 +93,13 @@ if(imageHeight < windowHeight) {
   imageWidth = imageHeight * 16/9;
 }
 
-const frameCount = 400;
+const frameCount = 250;
 const frames = [];
 let frameIndex = 0;
 
 const currentFrame = (index) => (
-  `/assets/img/frames/${index.toString().padStart(4, '0')}.png`
-    //`https://www.apple.com/105/media/us/airpods-pro/2019/1299e2f5_9206_4470_b28e_08307a42f19b/anim/sequence/large/01-hero-lightpass/${index.toString().padStart(4, '0')}.jpg`
+  `assets/img/frames/${index.toString().padStart(4, '0')}.jpg`
+  //`https://www.apple.com/105/media/us/airpods-pro/2019/1299e2f5_9206_4470_b28e_08307a42f19b/anim/sequence/large/01-hero-lightpass/${index.toString().padStart(4, '0')}.jpg`
 )
 const preloadImages = () => {
   for (let i = 1; i < frameCount; i++) {
@@ -112,23 +110,33 @@ const preloadImages = () => {
 };
 
 //Frames Animation
-let accelamount = 0.06;
+let accelamount = 1;
 let scrollpos = 0;
 let delay = 0;
 
 sceneAnimationRings.on("update", e => {
-  scrollpos = (e.scrollPos - e.startPos)/ 5;
+  scrollpos = (e.scrollPos - e.startPos)/ 20;
 });
 
-const update = () => {
+// const update = () => {
+//   delay += (scrollpos - delay) * accelamount;
+//   frameIndex = Math.round(delay);
+//
+//   context.clearRect(0,0, canvas.width, canvas.height);
+//   if(frames[frameIndex])
+//     context.drawImage(frames[frameIndex], windowWidth/2 - imageWidth/2 , windowHeight/2 - imageHeight/2, imageWidth, imageHeight);
+//   requestAnimationFrame(update);
+// }
+
+setInterval(() => {
   delay += (scrollpos - delay) * accelamount;
   frameIndex = Math.round(delay);
 
   context.clearRect(0,0, canvas.width, canvas.height);
   if(frames[frameIndex])
     context.drawImage(frames[frameIndex], windowWidth/2 - imageWidth/2 , windowHeight/2 - imageHeight/2, imageWidth, imageHeight);
-  requestAnimationFrame(update);
-}
+}, 0);
+
 
 preloadImages();
-update();
+//update();

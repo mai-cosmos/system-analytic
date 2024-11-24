@@ -141,7 +141,7 @@ a, p, span, li, .card-body {
 }
 
 .msg-success-left {
-  width: 80%;
+  max-width: 16rem;
   background: $success;
   border-radius: 1.4rem;
   border-bottom-left-radius: 0;
@@ -149,13 +149,13 @@ a, p, span, li, .card-body {
   padding: 1rem;
   margin-left: -.1rem;
   @include media-breakpoint-up(md) {
-    width: 60%;
+    max-width: 32rem;
     padding: 1.4rem;
   }
 }
 
 .msg-secondary-left {
-  width: 80%;
+  max-width: 16rem;
   background: #666666;
   border-radius: 1.4rem;
   border-bottom-left-radius: 0;
@@ -163,7 +163,7 @@ a, p, span, li, .card-body {
   padding: 1rem;
   margin-left: -.1rem;
   @include media-breakpoint-up(md) {
-    width: 60%;
+    max-width: 32rem;
     padding: 1.4rem;
   }
 }
@@ -171,25 +171,25 @@ a, p, span, li, .card-body {
 .msg-text-success {
   color: $dark;
   font-size: 1rem;
-  line-height: 1.1;
+  line-height: 1.25;
   @include media-breakpoint-up(md) {
-    font-size: 1.8rem;
+    font-size: 1.2rem;
   }
 }
 
 .msg-text-secondary {
   color: $light;
   font-size: 1rem;
-  line-height: 1.1;
+  line-height: 1.25;
   @include media-breakpoint-up(md) {
-    font-size: 1.8rem;
+    font-size: 1.2rem;
   }
 }
 
 
 .round-success-left {
   --scale: 1.2;
-  background: radial-gradient(circle at -15% 30.5%, rgba(0,0,0,0) calc(2.45rem * var(--scale)), $success 0px);
+  background: radial-gradient(circle at -35% 35%, rgba(0,0,0,0) calc(3.1rem * var(--scale)), $success 0px);
   background-size: 100% 100%;
   background-repeat: no-repeat;
   border: none;
@@ -199,7 +199,7 @@ a, p, span, li, .card-body {
 
 .round-secondary-left {
   --scale: 1.2;
-  background: radial-gradient(circle at -15% 30.5%, rgba(0,0,0,0) calc(2.45rem * var(--scale)), #666666 0px);
+  background: radial-gradient(circle at -15% 30.5%, rgba(0,0,0,0) calc(2.8rem * var(--scale)), #666666 0px);
   background-size: 100% 100%;
   background-repeat: no-repeat;
   border: none;
