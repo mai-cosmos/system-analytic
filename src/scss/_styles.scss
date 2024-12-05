@@ -88,7 +88,7 @@ a, p, span, li, .card-body {
 }
 
 .text-linear-gradient {
-  background: linear-gradient(#0271FF, #00F78B);
+  background: linear-gradient($primary, $success);
   //background: linear-gradient(#0262e4, #7359ff);
   color: transparent;
   -webkit-background-clip: text;
@@ -205,4 +205,11 @@ a, p, span, li, .card-body {
   border: none;
   width: calc(2rem * var(--scale));
   height: calc(3.5rem * var(--scale));
+}
+
+.card-hover, .hover-up {
+  transition: all .2s ease-in-out;
+  &:hover {
+    transform: translateY(-0.25rem);
+  }
 }

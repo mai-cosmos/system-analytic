@@ -1,5 +1,6 @@
-import 'smooth-scroll/dist/smooth-scroll.polyfills';
+import 'smooth-scroll/dist/smooth-scroll.polyfills'
 import smoothScroll from './components/smooth-scroll';
+import scrollTopButton from './components/scroll-top-button';
 
 // INITIALIZATION OF SMOOTH SCROLL
 // =======================================================
@@ -30,7 +31,7 @@ let sceneAnimationRings = new ScrollMagic.Scene({
   offset: -1250,
   triggerHook: 0
 })
-  .addIndicators()
+  //.addIndicators()
   //.setPin(intro)
   .addTo(controller);
 
@@ -39,7 +40,7 @@ let scenePinIntro = new ScrollMagic.Scene({
   triggerElement: intro,
   triggerHook: 0
 })
-  .addIndicators()
+  //.addIndicators()
   .setPin(intro)
   .addTo(controller);
 
@@ -49,7 +50,7 @@ let sceneIntroTextShow = new ScrollMagic.Scene({
   offset: -400,
   triggerHook: 0
 })
-  .addIndicators()
+  //.addIndicators()
   .addTo(controller)
   .setTween(
     gsap.fromTo(
@@ -65,7 +66,7 @@ let sceneIntroTextHide = new ScrollMagic.Scene({
   offset: 1200,
   triggerHook: 0
 })
-  .addIndicators()
+  //.addIndicators()
   .addTo(controller)
   .setTween(
     gsap.to(

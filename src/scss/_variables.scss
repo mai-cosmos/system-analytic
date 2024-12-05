@@ -1,6 +1,8 @@
 @import "bootstrap/scss/functions";
 @import "bootstrap/scss/mixins";
 
+$prefix:                      si- !default;
+
 $grid-breakpoints: (
   xs: 0,
   350: 350px,
@@ -118,3 +120,18 @@ $border-colors: (
     'light':   rgba($light, 1),
     'dark':    rgba($dark, .35),
 ) !default;
+
+// Scroll to top button
+
+$btn-scroll-top-size:                       2rem !default;
+$btn-scroll-top-icon-font-size:             $font-size-base * 1.2 !default;
+$btn-scroll-top-bg:                         rgba($secondary, .4) !default;
+$btn-scroll-top-hover-bg:                   rgba($secondary, .6) !default;
+$btn-scroll-top-color:                      $light !default;
+$btn-scroll-top-hover-color:                $light !default;
+$btn-scroll-top-transition:                 bottom 400ms cubic-bezier(.68, -.55, .265, 1.55), opacity .3s, background-color .25s ease-in-out !default;
+
+$btn-scroll-top-dark-mode-bg:               rgba($light, .15) !default;
+$btn-scroll-top-dark-mode-hover-bg:         rgba($light, .3) !default;
+$btn-scroll-top-dark-mode-color:            $light !default;
+$btn-scroll-top-dark-mode-hover-color:      $light !default;

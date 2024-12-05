@@ -749,6 +749,24 @@
 	  /* eslint-enable no-unused-vars, no-undef */
 	})();
 
+	/**
+	 * Animate scroll to top button in/off view
+	 */
+
+	(() => {
+	  let element = document.querySelector('.btn-scroll-top'),
+	    scrollOffset = 600;
+	  if (element == null) return;
+	  let offsetFromTop = parseInt(scrollOffset, 10);
+	  window.addEventListener('scroll', e => {
+	    if (e.currentTarget.pageYOffset > offsetFromTop) {
+	      element.classList.add('show');
+	    } else {
+	      element.classList.remove('show');
+	    }
+	  });
+	})();
+
 	// INITIALIZATION OF SMOOTH SCROLL
 	// =======================================================
 	new SmoothScroll('a[href*="#"]', {
@@ -776,20 +794,25 @@
 	  triggerElement: intro,
 	  offset: -1250,
 	  triggerHook: 0
-	}).addIndicators()
+	})
+	//.addIndicators()
 	//.setPin(intro)
 	.addTo(controller);
 	new ScrollMagic.Scene({
 	  duration: sceneDurationPinIntro,
 	  triggerElement: intro,
 	  triggerHook: 0
-	}).addIndicators().setPin(intro).addTo(controller);
+	})
+	//.addIndicators()
+	.setPin(intro).addTo(controller);
 	new ScrollMagic.Scene({
 	  duration: sceneDurationIntroText,
 	  triggerElement: intro,
 	  offset: -400,
 	  triggerHook: 0
-	}).addIndicators().addTo(controller).setTween(gsap.fromTo(introText, {
+	})
+	//.addIndicators()
+	.addTo(controller).setTween(gsap.fromTo(introText, {
 	  opacity: `0`
 	}, {
 	  opacity: `1`
@@ -799,7 +822,9 @@
 	  triggerElement: intro,
 	  offset: 1200,
 	  triggerHook: 0
-	}).addIndicators().addTo(controller).setTween(gsap.to(introText, {
+	})
+	//.addIndicators()
+	.addTo(controller).setTween(gsap.to(introText, {
 	  opacity: `0`
 	}));
 

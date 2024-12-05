@@ -1,0 +1,65 @@
+.btn-scroll-top {
+  --#{$prefix}btn-scroll-top-size: #{$btn-scroll-top-size};
+  --#{$prefix}btn-scroll-top-border-radius: 50%;
+  --#{$prefix}btn-scroll-top-color: #{$btn-scroll-top-color};
+  --#{$prefix}btn-scroll-top-hover-color: #{$btn-scroll-top-hover-color};
+  --#{$prefix}btn-scroll-top-bg: #{$btn-scroll-top-bg};
+  --#{$prefix}btn-scroll-top-hover-bg: #{$btn-scroll-top-hover-bg};
+  --#{$prefix}btn-scroll-top-icon-size: #{$btn-scroll-top-icon-font-size};
+
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: $spacer * 1.25;
+  bottom: -($btn-scroll-top-size * 1.5);
+  width: var(--#{$prefix}btn-scroll-top-size);
+  height: var(--#{$prefix}btn-scroll-top-size);
+  transition: $btn-scroll-top-transition;
+  @include border-radius(var(--#{$prefix}btn-scroll-top-border-radius));
+  background-color: var(--#{$prefix}btn-scroll-top-bg);
+  color: var(--#{$prefix}btn-scroll-top-color);
+  text-decoration: none;
+  opacity: 0;
+  z-index: $zindex-fixed;
+  > .btn-scroll-top-icon {
+    font: {
+      size: var(--#{$prefix}btn-scroll-top-icon-size);
+      weight: bold;
+    }
+  }
+
+  .btn-scroll-top-tooltip {
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    transform: translateY(-50%);
+    transition: opacity .25s ease-in-out, visibility .25s ease-in-out;
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  &:hover {
+    background-color: var(--#{$prefix}btn-scroll-top-hover-bg);
+    color: var(--#{$prefix}btn-scroll-top-hover-color);
+    .btn-scroll-top-tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  &.show {
+    bottom: $spacer * 1.25;
+    opacity: 1;
+  }
+
+  @include media-breakpoint-down(lg) {
+    width: calc(var(--#{$prefix}btn-scroll-top-size) * 1.5);
+    height: calc(var(--#{$prefix}btn-scroll-top-size) * 1.5);
+    right: $spacer;
+    &.show { bottom: $spacer; }
+    font: {
+      size: 1.25rem;
+    }
+  }
+}
