@@ -141,3 +141,31 @@ setInterval(() => {
 
 preloadImages();
 //update();
+
+const swiperTeachers = (swiperContainer) => {
+  return {
+    speed: 600,
+    slidesPerView: 1,
+    slidesPerGroup: 1,
+    //spaceBetween: 15,
+    loop: false,
+    pagination: {
+      el:  `${swiperContainer} .swiper-pagination`,
+      clickable: true
+    },
+    navigation: {
+      prevEl: `${swiperContainer} .navigation-prev`,
+      nextEl: `${swiperContainer} .navigation-next`,
+    },
+    breakpoints: {
+      740: {
+        //spaceBetween: 24,
+        slidesPerView: 2,
+        slidesPerGroup: 2
+      }
+    }
+  };
+};
+
+new Swiper('#swiper-teachers', swiperTeachers('#swiper-teachers'));
+

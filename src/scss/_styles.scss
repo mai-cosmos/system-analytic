@@ -42,6 +42,13 @@ a, p, span, li, .card-body {
   }
 }
 
+.asterisk {
+  width: 1.6rem;
+  @include media-breakpoint-up(md) {
+    width: 1.8rem;
+  }
+}
+
 .logo-TI {
   width: 4.1rem;
   @include media-breakpoint-up(md) {
@@ -211,5 +218,35 @@ a, p, span, li, .card-body {
   transition: all .2s ease-in-out;
   &:hover {
     transform: translateY(-0.25rem);
+  }
+}
+
+.card-img {
+  border-radius: 1.4rem;
+  @include media-breakpoint-up(md) {
+    border-radius: 1.4rem;
+  }
+}
+
+.card {
+  --si-card-spacer-y: 0 !important;
+  --si-card-spacer-x: 0 !important;
+  --si-card-title-spacer-y: 0 !important;
+  --si-card-title-color: $dark !important;
+  --si-card-subtitle-color: $dark !important;
+  --si-card-cap-padding-y: 0 !important;
+  --si-card-cap-padding-x: 0 !important;
+  --si-card-bg: rgba(0, 0, 0, 0) !important;
+  --si-card-cap-bg: rgba(0, 0, 0, 0) !important;
+  --si-border-color-translucent : rgba(0, 0, 0, 0) !important;
+  border-color: transparent;
+}
+
+.fs-card-title {
+  font-size: 1.25rem;
+  line-height: 1.25;
+  @include media-breakpoint-up(md) {
+    font-size: 1.5rem;
+    line-height: 1.2;
   }
 }

@@ -71,7 +71,7 @@ $container-max-widths: (
 );
 
 :root {
-  --fs-base : 1rem;
+  --fs-base : .9rem;
   @include media-breakpoint-up(md) {
     --fs-base : 1rem;
   }
@@ -114,6 +114,7 @@ $border-colors: (
     'primary': rgba($primary, 1),
     'success': rgba($success, 1),
     'secondary': rgba(#777777, 1),
+    'light-secondary' : #EFEFEF,
     'info':    rgba($info, 1),
     'warning': rgba($warning, 1),
     'danger':  rgba($danger, 1),

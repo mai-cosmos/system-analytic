@@ -25,5 +25,19 @@ $utilities: map-merge(
       class: border,
       values: $border-colors
     ),
+    "background-color": (
+      property: background-color,
+      class: bg,
+      local-vars: (
+        "bg-opacity": 1
+      ),
+      values: map-merge(
+        $utilities-bg-colors,
+        (
+          "transparent": transparent,
+          "light-secondary" : #f4f4f4
+        )
+      )
+    ),
   )
 );
