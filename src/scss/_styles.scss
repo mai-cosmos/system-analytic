@@ -137,6 +137,7 @@ a, p, span, li, .card-body {
 }
 
 .text-intro {
+  display: block;
   color:$dark;
   font-weight: 700;
   font-size: 1.85rem;
@@ -214,17 +215,32 @@ a, p, span, li, .card-body {
   height: calc(3.5rem * var(--scale));
 }
 
-.card-hover, .hover-up {
-  transition: all .2s ease-in-out;
+.cursor-pointer{
+  cursor: default;
   &:hover {
-    transform: translateY(-0.25rem);
+    cursor: pointer;
   }
 }
 
-.card-img {
+.card-hover, .hover-up {
+  transition: all .2s ease-in-out;
+  &:hover {
+    transform: translateY(-0.125rem);
+  }
+}
+
+.card-img-border {
   border-radius: 1.4rem;
   @include media-breakpoint-up(md) {
     border-radius: 1.4rem;
+  }
+}
+
+.card-img-hover {
+  transform: scale(1);
+  transition: transform .35s;
+  &:hover {
+    transform: scale(1.025);
   }
 }
 

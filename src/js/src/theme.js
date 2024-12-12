@@ -18,90 +18,39 @@ let scroll = new SmoothScroll('a[href*="#"]', {
 });
 
 // INTRO
-const intro = document.querySelector("#section-intro");
-const introText = document.querySelector("#intro-text");
+let intro;
+let introText;
 
 // SCROLLMAGIC
-const controller = new ScrollMagic.Controller();
+let controller;
 const sceneDurationPinIntro = 3500;
 const sceneDurationIntroText = 1000;
 
-let sceneAnimationRings = new ScrollMagic.Scene({
-  triggerElement: intro,
-  offset: -1250,
-  triggerHook: 0
-})
-  //.addIndicators()
-  //.setPin(intro)
-  .addTo(controller);
-
-let scenePinIntro = new ScrollMagic.Scene({
-  duration: sceneDurationPinIntro,
-  triggerElement: intro,
-  triggerHook: 0
-})
-  //.addIndicators()
-  .setPin(intro)
-  .addTo(controller);
-
-let sceneIntroTextShow = new ScrollMagic.Scene({
-  duration: sceneDurationIntroText,
-  triggerElement: intro,
-  offset: -400,
-  triggerHook: 0
-})
-  //.addIndicators()
-  .addTo(controller)
-  .setTween(
-    gsap.fromTo(
-      introText,
-      {opacity: `0`},
-      {opacity: `1`}
-    )
-  );
-
-let sceneIntroTextHide = new ScrollMagic.Scene({
-  duration: sceneDurationIntroText,
-  triggerElement: intro,
-  offset: 1200,
-  triggerHook: 0
-})
-  //.addIndicators()
-  .addTo(controller)
-  .setTween(
-    gsap.to(
-      introText,
-      {opacity: `0`}
-    )
-  );
-
+let sceneAnimationRings;
+let scenePinIntro;
+let sceneIntroTextShow;
+let sceneIntroTextHide;
 
 // CANVAS
-const windowWidth = window.innerWidth;
-const windowHeight = window.innerHeight + 80;
-
-const canvas = document.getElementById("canvas-intro");
-canvas.width = windowWidth;
-canvas.height = windowHeight;
-
-const context = canvas.getContext("2d");
-
-let imageWidth = windowWidth;
-let imageHeight = imageWidth * 9/16; //16x9
-
-if(imageHeight < windowHeight) {
-  imageHeight = windowHeight;
-  imageWidth = imageHeight * 16/9;
-}
+let canvas;
+let context;
 
 const frameCount = 250;
 const frames = [];
 let frameIndex = 0;
 
-const currentFrame = (index) => (
-  `assets/img/frames/${index.toString().padStart(4, '0')}.jpg`
-  //`https://www.apple.com/105/media/us/airpods-pro/2019/1299e2f5_9206_4470_b28e_08307a42f19b/anim/sequence/large/01-hero-lightpass/${index.toString().padStart(4, '0')}.jpg`
-)
+let windowWidth;
+let windowHeight;
+
+let imageWidth;
+let imageHeight;
+
+//Frames Animation
+let accelamount = 1;
+let scrollpos = 0;
+let delay = 0;
+
+const currentFrame = (index) => (`assets/img/frames/${index.toString().padStart(4, '0')}.jpg`);
 const preloadImages = () => {
   for (let i = 1; i < frameCount; i++) {
     const img = new Image();
@@ -110,62 +59,127 @@ const preloadImages = () => {
   }
 };
 
-//Frames Animation
-let accelamount = 1;
-let scrollpos = 0;
-let delay = 0;
+function init() {
+  intro = document.querySelector("#section-intro");
+  introText = document.querySelector("#intro-text");
 
-sceneAnimationRings.on("update", e => {
-  scrollpos = (e.scrollPos - e.startPos)/ 20;
-});
+  canvas = document.getElementById("canvas-intro");
+  context = canvas.getContext("2d");
 
-// const update = () => {
-//   delay += (scrollpos - delay) * accelamount;
-//   frameIndex = Math.round(delay);
-//
-//   context.clearRect(0,0, canvas.width, canvas.height);
-//   if(frames[frameIndex])
-//     context.drawImage(frames[frameIndex], windowWidth/2 - imageWidth/2 , windowHeight/2 - imageHeight/2, imageWidth, imageHeight);
-//   requestAnimationFrame(update);
-// }
+  controller?.destroy();
+  controller = new ScrollMagic.Controller();
 
-setInterval(() => {
-  delay += (scrollpos - delay) * accelamount;
-  frameIndex = Math.round(delay);
+  sceneAnimationRings?.destroy();
+  sceneAnimationRings = new ScrollMagic.Scene({
+    triggerElement: intro,
+    offset: -1250,
+    triggerHook: 0
+  })
+    //.addIndicators()
+    //.setPin(intro)
+    .addTo(controller);
 
-  context.clearRect(0,0, canvas.width, canvas.height);
-  if(frames[frameIndex])
-    context.drawImage(frames[frameIndex], windowWidth/2 - imageWidth/2 , windowHeight/2 - imageHeight/2, imageWidth, imageHeight);
-}, 0);
+  scenePinIntro?.destroy();
+  scenePinIntro = new ScrollMagic.Scene({
+    duration: sceneDurationPinIntro,
+    triggerElement: intro,
+    triggerHook: 0
+  })
+    //.addIndicators()
+    .setPin(intro)
+    .addTo(controller);
 
+  sceneIntroTextShow?.destroy();
+  sceneIntroTextShow = new ScrollMagic.Scene({
+    duration: sceneDurationIntroText,
+    triggerElement: intro,
+    offset: -400,
+    triggerHook: 0
+  })
+    //.addIndicators()
+    .addTo(controller)
+    .setTween(
+      gsap.fromTo(
+        introText,
+        {opacity: `0`},
+        {opacity: `1`}
+      )
+    );
+
+  sceneIntroTextHide?.destroy();
+  sceneIntroTextHide = new ScrollMagic.Scene({
+    duration: sceneDurationIntroText,
+    triggerElement: intro,
+    offset: 1200,
+    triggerHook: 0
+  })
+    //.addIndicators()
+    .addTo(controller)
+    .setTween(
+      gsap.to(
+        introText,
+        {opacity: `0`}
+      )
+    );
+
+  sceneAnimationRings.on("update", e => {
+    scrollpos = (e.scrollPos - e.startPos)/ 20;
+  });
+
+  windowWidth = window.innerWidth;
+  windowHeight = window.innerHeight + 80;
+
+  canvas.width = windowWidth;
+  canvas.height = windowHeight;
+
+  imageWidth = windowWidth;
+  imageHeight = imageWidth * 9/16; //16x9
+
+  if(imageHeight < windowHeight) {
+    imageHeight = windowHeight;
+    imageWidth = imageHeight * 16/9;
+  }
+
+  setInterval(() => {
+    delay += (scrollpos - delay) * accelamount;
+    frameIndex = Math.round(delay);
+
+    context.clearRect(0,0, canvas.width, canvas.height);
+    if(frames[frameIndex])
+      context.drawImage(frames[frameIndex], windowWidth/2 - imageWidth/2 , windowHeight/2 - imageHeight/2, imageWidth, imageHeight);
+  }, 0);
+
+}
 
 preloadImages();
-//update();
+init();
 
-const swiperTeachers = (swiperContainer) => {
+window.addEventListener('resize', function(event) {
+  location.reload();
+}, true);
+
+
+
+const swiperThreeElements = (swiperContainer) => {
   return {
     speed: 600,
-    slidesPerView: 1,
+    slidesPerView: 1.25,
     slidesPerGroup: 1,
     //spaceBetween: 15,
     loop: false,
-    pagination: {
-      el:  `${swiperContainer} .swiper-pagination`,
-      clickable: true
-    },
-    navigation: {
-      prevEl: `${swiperContainer} .navigation-prev`,
-      nextEl: `${swiperContainer} .navigation-next`,
-    },
+    // pagination: {
+    //   el:  `${swiperContainer} .swiper-pagination`,
+    //   clickable: true
+    // },
     breakpoints: {
       740: {
         //spaceBetween: 24,
-        slidesPerView: 2,
-        slidesPerGroup: 2
+        slidesPerView: 3,
+        slidesPerGroup: 3
       }
     }
   };
 };
 
-new Swiper('#swiper-teachers', swiperTeachers('#swiper-teachers'));
+new Swiper('#swiper-who', swiperThreeElements('#swiper-who'));
 
