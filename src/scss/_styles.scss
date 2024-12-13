@@ -73,6 +73,16 @@ a, p, span, li, .card-body {
   }
 }
 
+.decor-2025 {
+  position: absolute;
+  left: -25%;
+  width: 155%;
+  @include media-breakpoint-up(md) {
+    left: 50%;
+    top: 1.65rem;
+  }
+}
+
 .green-arrow {
   width: 10rem;
   @include media-breakpoint-up(md) {
@@ -265,4 +275,21 @@ a, p, span, li, .card-body {
     font-size: 1.5rem;
     line-height: 1.2;
   }
+}
+
+.btn-outline-light {
+  --si-btn-color: #ffffff !important;
+  --si-btn-border-color: #ffffff !important;
+  --si-btn-hover-color: #ffffff !important;
+  --si-btn-hover-bg: rgba(0, 0, 0, 0) !important;
+  --si-btn-hover-border-color: #00F78B !important;
+  --si-btn-focus-shadow-rgb: 255, 255, 255 !important;
+  --si-btn-active-color: #ffffff !important;
+  --si-btn-active-bg: rgba(0, 0, 0, 0) !important;
+  --si-btn-active-border-color: #00F78B;
+  --si-btn-active-shadow: inset 0 0 0 rgba(0, 0, 0, 0) !important;
+  --si-btn-disabled-color: #ffffff !important;
+  --si-btn-disabled-bg: transparent !important;
+  --si-btn-disabled-border-color: #ffffff !important;
+  --si-gradient: none;
 }
