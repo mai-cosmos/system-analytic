@@ -729,6 +729,24 @@
 	}));
 
 	/**
+	 * Animate scroll to top button in/off view
+	 */
+
+	(() => {
+	  let element = document.querySelector('.btn-scroll-top'),
+	    scrollOffset = 600;
+	  if (element == null) return;
+	  let offsetFromTop = parseInt(scrollOffset, 10);
+	  window.addEventListener('scroll', e => {
+	    if (e.currentTarget.pageYOffset > offsetFromTop) {
+	      element.classList.add('show');
+	    } else {
+	      element.classList.remove('show');
+	    }
+	  });
+	})();
+
+	/**
 	 * Anchor smooth scrolling
 	 * @requires https://github.com/cferdinandi/smooth-scroll/
 	 */
@@ -749,24 +767,6 @@
 	  /* eslint-enable no-unused-vars, no-undef */
 	})();
 
-	/**
-	 * Animate scroll to top button in/off view
-	 */
-
-	(() => {
-	  let element = document.querySelector('.btn-scroll-top'),
-	    scrollOffset = 600;
-	  if (element == null) return;
-	  let offsetFromTop = parseInt(scrollOffset, 10);
-	  window.addEventListener('scroll', e => {
-	    if (e.currentTarget.pageYOffset > offsetFromTop) {
-	      element.classList.add('show');
-	    } else {
-	      element.classList.remove('show');
-	    }
-	  });
-	})();
-
 	// INITIALIZATION OF SMOOTH SCROLL
 	// =======================================================
 	new SmoothScroll('a[href*="#"]', {
@@ -781,7 +781,6 @@
 	  pulseNormalize: 1,
 	  touchpadSupport: true
 	});
-
 	// INTRO
 	let intro;
 	let introText;
@@ -810,15 +809,7 @@
 	let accelamount = 1;
 	let scrollpos = 0;
 	let delay = 0;
-	const currentFrame = index => `assets/img/frames/${index.toString().padStart(4, '0')}.jpg`;
-	const preloadImages = () => {
-	  for (let i = 1; i < frameCount; i++) {
-	    const img = new Image();
-	    img.src = currentFrame(i);
-	    frames.push(img);
-	  }
-	};
-	function init() {
+	const init = () => {
 	  intro = document.querySelector("#section-intro");
 	  introText = document.querySelector("#intro-text");
 	  canvas = document.getElementById("canvas-intro");
@@ -870,7 +861,7 @@
 	    scrollpos = (e.scrollPos - e.startPos) / 20;
 	  });
 	  windowWidth = window.innerWidth;
-	  windowHeight = window.innerHeight + 80;
+	  windowHeight = window.innerHeight;
 	  canvas.width = windowWidth;
 	  canvas.height = windowHeight;
 	  imageWidth = windowWidth;
@@ -886,12 +877,37 @@
 	    context.clearRect(0, 0, canvas.width, canvas.height);
 	    if (frames[frameIndex]) context.drawImage(frames[frameIndex], windowWidth / 2 - imageWidth / 2, windowHeight / 2 - imageHeight / 2, imageWidth, imageHeight);
 	  }, 0);
+	  intro.classList.remove('opacity-0');
+	};
+	async function loadImage(url, elem) {
+	  return new Promise((resolve, reject) => {
+	    elem.onload = () => resolve(elem);
+	    elem.onerror = reject;
+	    elem.src = url;
+	  });
 	}
-	preloadImages();
-	init();
-	window.addEventListener('resize', function (event) {
-	  location.reload();
-	}, true);
+	const preloadImages = async () => {
+	  for (let i = 1; i < frameCount; i++) {
+	    const img = new Image();
+	    const loadImg = await loadImage(`assets/img/frames/${i.toString().padStart(4, '0')}.jpg`, img);
+	    frames.push(loadImg);
+	  }
+	  init();
+	};
+	window.addEventListener('load', () => setTimeout(() => preloadImages()));
+	window.addEventListener('resize', () => {
+	  windowWidth = window.innerWidth;
+	  windowHeight = window.innerHeight;
+	  canvas.width = windowWidth;
+	  canvas.height = windowHeight;
+	  imageWidth = windowWidth;
+	  imageHeight = imageWidth * 9 / 16; //16x9
+
+	  if (imageHeight < windowHeight) {
+	    imageHeight = windowHeight;
+	    imageWidth = imageHeight * 16 / 9;
+	  }
+	});
 	const swiperThreeElements = swiperContainer => {
 	  return {
 	    speed: 600,

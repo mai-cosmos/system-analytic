@@ -1,10 +1,11 @@
 import 'smooth-scroll/dist/smooth-scroll.polyfills'
-import smoothScroll from './components/smooth-scroll';
+
 import scrollTopButton from './components/scroll-top-button';
+import smoothScroll from './components/smooth-scroll';
 
 // INITIALIZATION OF SMOOTH SCROLL
 // =======================================================
-let scroll = new SmoothScroll('a[href*="#"]', {
+new SmoothScroll('a[href*="#"]', {
   animationTime: 800,
   stepSize: 75,
   accelerationDelta: 30,
@@ -16,7 +17,6 @@ let scroll = new SmoothScroll('a[href*="#"]', {
   pulseNormalize: 1,
   touchpadSupport: true,
 });
-
 // INTRO
 let intro;
 let introText;
@@ -50,16 +50,7 @@ let accelamount = 1;
 let scrollpos = 0;
 let delay = 0;
 
-const currentFrame = (index) => (`assets/img/frames/${index.toString().padStart(4, '0')}.jpg`);
-const preloadImages = () => {
-  for (let i = 1; i < frameCount; i++) {
-    const img = new Image();
-    img.src = currentFrame(i);
-    frames.push(img);
-  }
-};
-
-function init() {
+const init = () => {
   intro = document.querySelector("#section-intro");
   introText = document.querySelector("#intro-text");
 
@@ -127,7 +118,7 @@ function init() {
   });
 
   windowWidth = window.innerWidth;
-  windowHeight = window.innerHeight + 80;
+  windowHeight = window.innerHeight;
 
   canvas.width = windowWidth;
   canvas.height = windowHeight;
@@ -149,16 +140,43 @@ function init() {
       context.drawImage(frames[frameIndex], windowWidth/2 - imageWidth/2 , windowHeight/2 - imageHeight/2, imageWidth, imageHeight);
   }, 0);
 
+  intro.classList.remove('opacity-0')
 }
 
-preloadImages();
-init();
+async function loadImage(url, elem) {
+  return new Promise((resolve, reject) => {
+    elem.onload = () => resolve(elem);
+    elem.onerror = reject;
+    elem.src = url;
+  });
+}
 
-window.addEventListener('resize', function(event) {
-  location.reload();
-}, true);
+const preloadImages = async () => {
+  for (let i = 1; i < frameCount; i++) {
+    const img = new Image();
+    const loadImg = await loadImage(`assets/img/frames/${i.toString().padStart(4, '0')}.jpg`, img);
+    frames.push(loadImg);
+  }
+  init();
+};
 
+window.addEventListener('load', () => setTimeout(() => preloadImages()));
 
+window.addEventListener('resize', () => {
+  windowWidth = window.innerWidth;
+  windowHeight = window.innerHeight;
+
+  canvas.width = windowWidth;
+  canvas.height = windowHeight;
+
+  imageWidth = windowWidth;
+  imageHeight = imageWidth * 9/16; //16x9
+
+  if(imageHeight < windowHeight) {
+    imageHeight = windowHeight;
+    imageWidth = imageHeight * 16/9;
+  }
+});
 
 const swiperThreeElements = (swiperContainer) => {
   return {
@@ -182,4 +200,3 @@ const swiperThreeElements = (swiperContainer) => {
 };
 
 new Swiper('#swiper-who', swiperThreeElements('#swiper-who'));
-
