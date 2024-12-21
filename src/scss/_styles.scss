@@ -293,3 +293,37 @@ a, p, span, li, .card-body {
   --si-btn-disabled-border-color: #ffffff !important;
   --si-gradient: none;
 }
+
+.bg-gradient-primary {
+  background: rgb(107,113,255);
+  background: linear-gradient(45deg, rgba(107,113,255,1) 0%, rgba(0,247,139,1) 100%);
+
+  &:hover {
+    animation-name: animation;
+    animation-duration: .15s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-timing-function: steps(1, end);
+  }
+}
+
+@keyframes animation {
+  0% {
+    background: linear-gradient(45deg, rgba(107,113,255,1) 0%, rgba(0,247,139,1) 100%);
+  }
+  20% {
+    background: linear-gradient(90deg, rgba(107,113,255,1) 0%, rgba(0,247,139,1) 100%);
+  }
+  60% {
+    background: linear-gradient(120deg, rgba(107,113,255,1) 0%, rgba(0,247,139,1) 100%);
+  }
+  60% {
+    background: linear-gradient(150deg, rgba(107,113,255,1) 0%, rgba(0,247,139,1) 100%);
+  }
+  80% {
+    background: linear-gradient(200deg, rgba(107,113,255,1) 0%, rgba(0,247,139,1) 100%);
+  }
+  100% {
+    background: linear-gradient(225deg, rgba(107,113,255,1) 0%, rgba(0,247,139,1) 100%);
+  }
+}
