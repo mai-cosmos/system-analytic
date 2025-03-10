@@ -58,4 +58,4 @@ npm run build
 Во время выполнения инструкций по сборке проекта, в корне проекта создается директория `dist`, в которую будет помещен результирующий html файл. После сборки проект готов к публикации, возможно потребуется изменить немного пути в src и href к директории assets. При деплое нужно выложить также и папку assets в которой лежат стили, шрифты, изображения и т.д.
 
 ### Ссылка на макет лендинга в Figma
-https://www.figma.com/design/dAPk0pJV9HMXvM86TE9Voq/ПИШ?node-id=2320-2&p=f&t=dDeZnmkltx2Wftku-0
+https://www.figma.com/design/YDvaGGDYKwLy1WjEmsunce/sprintuniversity.ru?node-id=677-42&p=f&t=ecLWijZlPZomHTMa-0
